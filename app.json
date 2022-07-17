@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "RNMC",
+    "slug": "RNMC",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "RNMC"
+}
