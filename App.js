@@ -5,15 +5,27 @@ import { Asset } from "expo-asset";
 import { Text, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
+
+const loadImage = (images) =>
+  images.map((image) => {
+    if (typeof image === "string") {
+      return Image.prefetch(image);
+    } else {
+      return Asset.loadAsync(image);
+    }
+  });
+
 export default function App() {
   const [ready, setReady] = useState(false);
   const onFinish = () => setReady(true);
   const startLoading = async () => {
-    await Font.loadAsync(Ionicons.font);
-    await Asset.loadAsync(require("./image2.jpg"));
-    await Image.prefetch(
-      "https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fbanners%2F1756%2Fe89a0686.thumb_1006_280.jpg&w=1060&q=100"
-    );
+    const fonts = loadFonts([Ionicons.font]);
+    const images = loadImage([
+      require("./crypto.png"),
+      "https://nomadcoders.co/m.svg",
+    ]);
+    await Promise.all([...fonts, ...images]);
   };
   if (!ready) {
     return (
