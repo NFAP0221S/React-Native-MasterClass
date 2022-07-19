@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const Movies = () => {
+const Coins = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Movies</Text>
+      <Text>Coins</Text>
     </View>
   );
 };
 
-export default Movies;
+export default Coins;
