@@ -1,16 +1,16 @@
 import AppLoading from "expo-app-loading";
 import React, { useState } from "react";
 import * as Font from "expo-font";
-import { Text, Image } from "react-native";
+import { Text, Image, useColorScheme } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Asset, useAssets } from "expo-asset";
+import { Asset } from "expo-asset";
 import {
   NavigationContainer,
   DarkTheme,
   DefaultTheme,
 } from "@react-navigation/native";
 import Tabs from "./navigation/Tab";
-import { useColorScheme } from "react-native";
+import Stack from "./navigation/Stack";
 
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 
@@ -22,19 +22,13 @@ const loadImages = (images) =>
       return Asset.loadAsync(image);
     }
   });
-
 export default function App() {
   const [ready, setReady] = useState(false);
   const onFinish = () => setReady(true);
   const startLoading = async () => {
     const fonts = loadFonts([Ionicons.font]);
-    const images = loadImages([
-      require("./crypto.png"),
-      "https://avatars.githubusercontent.com/u/102638663?v=4",
-    ]);
-    await Promise.all([...fonts, ...images]);
+    await Promise.all([...fonts]);
   };
-  const isDark = useColorScheme() === "dark";
   if (!ready) {
     return (
       <AppLoading
@@ -45,8 +39,8 @@ export default function App() {
     );
   }
   return (
-    <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
-      <Tabs />
+    <NavigationContainer>
+      <Stack />
     </NavigationContainer>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Coins from "../screens/Coins";
+import Movies from "../screens/Movies";
 import Tv from "../screens/Tv";
 import Search from "../screens/Search";
 import { useColorScheme } from "react-native";
@@ -46,7 +46,7 @@ const Tabs = () => {
     >
       <Tab.Screen
         name="Coins"
-        component={Coins}
+        component={Movies}
         options={{
           tabBarIcon: ({ color = "black", size = 24 }) => {
             return <FontAwesome5 name="coins" color={color} size={size} />;
